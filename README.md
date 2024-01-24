@@ -6,7 +6,7 @@ conda activate environmentName
 mkdir pretrained  (keep trained model for graph encoder here)
 
 ## Dataset
-Scripts folder contain .sh files to download and pre-process both Visual Genome and COCO-stuff dataset.
+Scripts folder contains bash files to download and pre-process both Visual Genome and COCO-stuff dataset. 
 
 For COCO, install COCO API from here https://github.com/cocodataset/cocoapi.
 ## Training
