@@ -653,10 +653,6 @@ def main(args):
         optimizer_class = bnb.optim.AdamW8bit
     else:
         optimizer_class = torch.optim.AdamW
-
-    config = OmegaConf.load("./config_vg.yaml")   
-    #config.model.params.cond_stage_config
-    #gcn=instantiate_from_config(config.model.params.cond_stage_config)
     gcn=CGIPModel(num_objs=179,num_preds=46,layers=5,width=512,embed_dim=512,ckpt_path="../Output_vg_concat/gcn.pt")
     gcn.cuda()
 
@@ -774,11 +770,7 @@ def main(args):
     if not os.path.exists(generate_img_dir):
         os.mkdir(generate_img_dir)
 
-    n_samples_per_scene_graph = 1
-    # config = OmegaConf.load("./config_vg.yaml")   
-    # #config.model.params.cond_stage_config
-    # gcn=instantiate_from_config(config.model.params.cond_stage_config)
-    # gcn.cuda()
+    
 #--------------------------------------------------------------------
     #unet.requires_grad_(False)
     clip_model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")

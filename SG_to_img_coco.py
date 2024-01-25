@@ -613,9 +613,8 @@ def main(args):
     unet = UNet2DConditionModel.from_pretrained(
         args.pretrained_model_name_or_path, subfolder="unet", revision=args.revision
     )
-    config = OmegaConf.load("./config_coco.yaml")   
-    #config.model.params.cond_stage_config
-    #gcn=instantiate_from_config(config.model.params.cond_stage_config)
+    
+    
     gcn=CGIPModel(num_objs=184,num_preds=7,layers=5,width=512,embed_dim=512,ckpt_path="./Output_coco_mmd/gcn.pt")
     gcn.cuda()
     #print("gcn_dict1",list(gcn.state_dict().keys()))
@@ -834,10 +833,7 @@ def main(args):
         os.mkdir(generate_img_dir)
 
     n_samples_per_scene_graph = 1
-    # config = OmegaConf.load("./config_coco.yaml")   
-    # #config.model.params.cond_stage_config
-    # gcn=instantiate_from_config(config.model.params.cond_stage_config)
-    # gcn.cuda()
+    
 #--------------------------------------------------------------------
     #unet.requires_grad_(False)
     clip_model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")

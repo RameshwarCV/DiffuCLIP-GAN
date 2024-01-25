@@ -150,8 +150,6 @@ def main():
         os.mkdir(generate_img_dir)
 
     n_samples_per_scene_graph = 1
-    config = OmegaConf.load("./config_coco.yaml")
-    
     gcn=CGIPModel(num_objs=184,num_preds=46,layers=5,width=512,embed_dim=512,ckpt_path="./Output_vg_concat/gcn.pt")
     gcn.cuda()
     
