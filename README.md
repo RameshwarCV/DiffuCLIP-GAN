@@ -1,6 +1,9 @@
 Official Implementation of "Layout Free scene graph to image generation", accepted at the British Machine Vision Conference (BMVC), 2024, Glasgow.
 
-<img width="600" alt="image" src="https://github.com/user-attachments/assets/89d8ee00-da5c-454c-a111-d81fc2fe4b53">
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/5649205b-72db-4a14-a368-1edf9afee914">
+
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/6a278d4e-cacb-41f2-bf4c-46539989074b">
+
 
 ## Environement
 conda env create -f environment.yaml
