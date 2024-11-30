@@ -790,11 +790,11 @@ def main(args):
             clip_feature=clip_model.get_image_features(input_clip['pixel_values'].cuda()).cuda()
             obj_string=[]
             no_of_tokens=[]
-            for obj in objs:
-                obj_string.append(vocab['object_idx_to_name'][obj])
-            obj_string[len(obj_string)-1]='in image'
-            graph_prompt=",".join(obj_string)
-            no_of_tokens.append(len(graph_prompt.split(" ")))
+            # for obj in objs:
+            #     obj_string.append(vocab['object_idx_to_name'][obj])
+            # obj_string[len(obj_string)-1]='in image'
+            # graph_prompt=",".join(obj_string)
+            # no_of_tokens.append(len(graph_prompt.split(" ")))
             #print(tokens,"no_of_tokens)
             text_inputs = tokenize_prompt(
                 tokenizer, graph_prompt
@@ -863,27 +863,30 @@ def main(args):
                 encoding_tensor=torch.cat((graph_encoding_tensor,clip_feature_tensor),dim=1)
                 #graph_encoding_tensor=torch.cat((graph_features,buffer_tensor),dim=1).unsqueeze(1)
                 encoder_hidden_state_concatenated=torch.zeros(encoder_hidden_states.shape).cuda().to(dtype=weight_dtype)
-                for ind in range(args.train_batch_size):
-                    nind=no_of_tokens[ind]+1
-                    aind=0
-                    bind=0
-                    isa=True
-                    for index_val in range(encoder_hidden_states.shape[1]):
-                        if(isa and aind<nind):
-                            encoder_hidden_state_concatenated[ind,index_val,:]=encoder_hidden_states[ind,aind,:]
-                            aind+=1
-                            isa=False
-                            continue
-                        if ((not isa) and bind<nind):
-                            encoder_hidden_state_concatenated[ind,index_val,:]=graph_encoding_tensor[ind,:,:]
-                            bind+=1
-                            isa=True
-                            continue
-                        break
-                    if(2*nind < encoder_hidden_states.shape[1]):
-                        encoder_hidden_state_concatenated[ind,2*nind:,:]=encoder_hidden_states[ind,2*nind:,:]
+                ###------------- conditioning signal code is out of date--------- will be updated soon-------
+                # for ind in range(args.train_batch_size):
+                #     nind=no_of_tokens[ind]+1
+                #     aind=0
+                #     bind=0
+                #     isa=True
+                #     for index_val in range(encoder_hidden_states.shape[1]):
+                #         if(isa and aind<nind):
+                #             encoder_hidden_state_concatenated[ind,index_val,:]=encoder_hidden_states[ind,aind,:]
+                #             aind+=1
+                #             isa=False
+                #             continue
+                #         if ((not isa) and bind<nind):
+                #             encoder_hidden_state_concatenated[ind,index_val,:]=graph_encoding_tensor[ind,:,:]
+                #             bind+=1
+                #             isa=True
+                #             continue
+                #         break
+                #     if(2*nind < encoder_hidden_states.shape[1]):
+                #         encoder_hidden_state_concatenated[ind,2*nind:,:]=encoder_hidden_states[ind,2*nind:,:]
 
                 #encoder_hidden_state_concatenated=encoder_hidden_states
+
+                ###------------- conditioning signal code is out of date--------- will be updated soon-------
                 encoder_hidden_state_concatenated.cuda().to(dtype=weight_dtype)
                 
                 model_pred = unet(
