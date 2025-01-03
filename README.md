@@ -5,12 +5,6 @@ Official Implementation of "Layout Free scene graph to image generation", accept
 <img width="700" alt="image" src="https://github.com/user-attachments/assets/6a278d4e-cacb-41f2-bf4c-46539989074b">
 
 
-## Environement
-
-
-conda activate environmentName
-
-mkdir pretrained  (keep trained model for graph encoder here)
 
 ## Dataset
 Scripts folder contains bash files to download and pre-process both Visual Genome and COCO-stuff dataset. 
