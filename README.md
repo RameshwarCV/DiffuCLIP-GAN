@@ -6,7 +6,7 @@ Official Implementation of "Layout Free scene graph to image generation", accept
 
 
 ## Environement
-conda env create -f environment.yaml
+
 
 conda activate environmentName
 
