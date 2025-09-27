@@ -18,4 +18,6 @@ accelerate launch SG_to_img_vg.py --pretrained_model_name_or_path="CompVis/stabl
 accelerate launch SG_to_img_coco.py --pretrained_model_name_or_path="CompVis/stable-diffusion-v1-4" --output_dir=./Output_coco_mmd 
 --resolution=256 --train_batch_size=2 --gradient_accumulation_steps=1 --learning_rate=5e-6 --lr_scheduler="constant" --lr_warmup_steps=0 --num_train_epochs=1
 
-Note: The conditioning part of the code will be updated soon.
+Note: 
+1. The conditioning part of the code will be updated soon.
+2. The updated environment file withoud dependency issues will be uploaded soon.
